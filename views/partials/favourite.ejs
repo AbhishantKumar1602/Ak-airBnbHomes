@@ -1,0 +1,23 @@
+<form action="/favourite" method="POST" class="w-full">
+     <input type="hidden" name="homeId" value="<%= home._id %>">
+     <button type="submit" class="
+       group w-full sm:flex-1 inline-flex items-center justify-center gap-3 
+            bg-gradient-to-r from-[#ff385c] to-rose-600 text-white 
+            px-8 py-4 rounded-full font-bold shadow-xl 
+            hover:from-rose-600 hover:to-red-600 hover:shadow-2xl hover:shadow-rose-500 hover:shadow-opacity-25
+            transition-all duration-300 transform hover:scale-105 active:scale-95
+            focus:outline-none focus:ring-4 focus:ring-rose-300 focus:ring-opacity-50 text-lg">
+       
+       <!-- Heart icon -->
+       <svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+       </svg>
+       
+       <span>Add to Favourite</span>
+       
+       <!-- Arrow icon -->
+       <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+       </svg>
+     </button>
+</form>

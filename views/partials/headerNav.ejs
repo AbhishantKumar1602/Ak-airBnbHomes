@@ -1,0 +1,201 @@
+<header class="bg-white/95 backdrop-blur-xl border-b border-gray-200/50 sticky top-0 z-50 shadow-lg shadow-gray-200/20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            
+            <!-- Logo Section -->
+            <div class="flex items-center space-x-3">
+                <div class="relative group">
+                    <!-- Logo Icon -->
+                    <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-red-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:shadow-pink-500/25 transition-all duration-300 transform group-hover:scale-110">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <!-- Animated ring -->
+                    <a href="/" class="absolute inset-0 rounded-xl border-2 border-pink-300 opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500"></a>
+                </div>
+                
+                <!-- Brand Name -->
+                <a href="/" class="text-2xl font-bold bg-gradient-to-r from-pink-600 via-red-500 to-pink-600 bg-clip-text text-transparent hover:from-pink-700 hover:via-red-600 hover:to-pink-700 transition-all duration-300 cursor-pointer">
+                    airbnb
+                </a> 
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-1">
+                <!-- Home Link -->
+                <a href="/" class="relative px-4 py-2 text-gray-700 font-medium rounded-xl hover:text-pink-600 hover:bg-pink-50/80 transition-all duration-300 group <%= activePage === 'airbnb-home' ? 'text-pink-600 bg-pink-50' : '' %>">
+                    <span class="relative z-10">airbnb</span>
+                    <% if (activePage === 'airbnb-home') { %>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-pink-500 to-red-500 rounded-full"></div>
+                    <% } %>
+                </a>
+
+                <% if (isLoggedIn) { %>
+                    <% if (user && user.usertype === 'guest') { %>
+                        <!-- Homes List -->
+                        <a href="/homes" class="relative px-4 py-2 text-gray-700 font-medium rounded-xl hover:text-pink-600 hover:bg-pink-50/80 transition-all duration-300 group <%= activePage === 'homes-list' ? 'text-pink-600 bg-pink-50' : '' %>">
+                            <span class="relative z-10 flex items-center space-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                                </svg>
+                                <span>Homes-List</span>
+                            </span>
+                            <% if (activePage === 'homes-list') { %>
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-pink-500 to-red-500 rounded-full"></div>
+                            <% } %>
+                        </a>
+
+                        <!-- Bookings -->
+                        <a href="/bookings" class="relative px-4 py-2 text-gray-700 font-medium rounded-xl hover:text-pink-600 hover:bg-pink-50/80 transition-all duration-300 group <%= activePage === 'bookings' ? 'text-pink-600 bg-pink-50' : '' %>">
+                            <span class="relative z-10 flex items-center space-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>Bookings</span>
+                            </span>
+                            <% if (activePage === 'bookings') { %>
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-pink-500 to-red-500 rounded-full"></div>
+                            <% } %>
+                        </a>
+
+                        <!-- Favourites -->
+                        <a href="/favourite" class="relative px-4 py-2 text-gray-700 font-medium rounded-xl hover:text-pink-600 hover:bg-pink-50/80 transition-all duration-300 group <%= activePage === 'favourite' ? 'text-pink-600 bg-pink-50' : '' %>">
+                            <span class="relative z-10 flex items-center space-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                                <span>Favourite</span>
+                            </span>
+                            <% if (activePage === 'favourite') { %>
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-pink-500 to-red-500 rounded-full"></div>
+                            <% } %>
+                        </a>
+                    <% } else { %>
+
+                        <!-- Host Homes -->
+                        <a href="/host/host-home-list" class="relative px-4 py-2 text-gray-700 font-medium rounded-xl hover:text-pink-600 hover:bg-pink-50/80 transition-all duration-300 group <%= activePage === 'host-home-list' ? 'text-pink-600 bg-pink-50' : '' %>">
+                        <span class="relative z-10 flex items-center space-x-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            <span>Host Homes</span>
+                        </span>
+                        <% if (activePage === 'host-home-list') { %>
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-pink-500 to-red-500 rounded-full"></div>
+                        <% } %>
+                        </a>
+                        
+                        <a href="/host/add-home" class="hidden sm:flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white px-5 py-2.5 rounded-full font-semibold shadow-lg hover:shadow-xl hover:shadow-pink-500/25 transform hover:-translate-y-0.5 transition-all duration-300 <%= activePage === 'add-home' ? 'ring-2 ring-pink-300 ring-offset-2' : '' %>">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            <span>Add Home</span>
+                        </a>                        
+
+                    <% } %>
+                <% } %>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-3">
+                <% if (isLoggedIn ) { %>
+                    <!-- Add Home Button -->
+                    <!-- <a href="/host/add-home" class="hidden sm:flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white px-5 py-2.5 rounded-full font-semibold shadow-lg hover:shadow-xl hover:shadow-pink-500/25 transform hover:-translate-y-0.5 transition-all duration-300 <%= activePage === 'add-home' ? 'ring-2 ring-pink-300 ring-offset-2' : '' %>">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        <span>Add Home</span>
+                    </a> -->
+
+                    <!-- Logout Button -->
+                    <form action="/logout" method="POST" class="inline-block">
+                        <button type="submit" class="flex items-center space-x-2 text-gray-700 font-medium px-4 py-2.5 rounded-full border-2 border-gray-200 hover:border-red-300 hover:text-red-600 hover:bg-red-50/80 transition-all duration-300 transform hover:scale-105 <%= activePage === 'logout' ? 'border-red-400 text-red-600 bg-red-50' : '' %>">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                            </svg>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+
+                <% } else { %>
+                    <!-- Login Button -->
+                    <a href="/login" class="flex items-center space-x-2 text-pink-600 font-semibold border-2 border-pink-200 hover:border-pink-300 px-4 py-2.5 rounded-full hover:bg-pink-50/80 transition-all duration-300 transform hover:scale-105 <%= activePage === 'login' ? 'bg-pink-50 border-pink-400' : '' %>">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                        </svg>
+                        <span>Login</span>
+                    </a>
+
+                    <!-- Sign Up Button -->
+                    <a href="/signup" class="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white px-5 py-2.5 rounded-full font-semibold shadow-lg hover:shadow-xl hover:shadow-pink-500/25 transform hover:-translate-y-0.5 transition-all duration-300 <%= activePage === 'signup' ? 'ring-2 ring-pink-300 ring-offset-2' : '' %>">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                        </svg>
+                        <span>Sign Up</span>
+                    </a>
+                <% } %>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden p-2 text-gray-600 hover:text-pink-600 hover:bg-pink-50/80 rounded-xl transition-all duration-300" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-xl">
+            <div class="py-4 space-y-2">
+                <a href="/" class="block px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-pink-50/80 hover:text-pink-600 transition-all duration-300 <%= activePage === 'airbnb-home' ? 'bg-pink-50 text-pink-600' : '' %>">
+                    airbnb
+                </a>
+                
+                <% if (isLoggedIn) { %>
+                    <a href="/homes" class="block px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-pink-50/80 hover:text-pink-600 transition-all duration-300 <%= activePage === 'homes-list' ? 'bg-pink-50 text-pink-600' : '' %>">
+                        Homes-List
+                    </a>
+                    <a href="/bookings" class="block px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-pink-50/80 hover:text-pink-600 transition-all duration-300 <%= activePage === 'bookings' ? 'bg-pink-50 text-pink-600' : '' %>">
+                        Bookings
+                    </a>
+                    <a href="/favourite" class="block px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-pink-50/80 hover:text-pink-600 transition-all duration-300 <%= activePage === 'favourite' ? 'bg-pink-50 text-pink-600' : '' %>">
+                        Favourite
+                    </a>
+                    <a href="/host/host-home-list" class="block px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-pink-50/80 hover:text-pink-600 transition-all duration-300 <%= activePage === 'host-home-list' ? 'bg-pink-50 text-pink-600' : '' %>">
+                        Host Homes
+                    </a>
+                    <a href="/host/add-home" class="block mx-4 mt-2 mb-4 text-center bg-gradient-to-r from-pink-500 to-red-500 text-white py-3 rounded-full font-semibold <%= activePage === 'add-home' ? 'ring-2 ring-pink-300 ring-offset-2' : '' %>">
+                        Add Home
+                    </a>
+                    
+                    <!-- Mobile Logout -->
+                    <div class="px-4 pt-2 border-t border-gray-200/50">
+                        <form action="/logout" method="POST" class="block">
+                            <button type="submit" class="w-full text-left px-4 py-3 text-red-600 font-medium rounded-xl hover:bg-red-50/80 transition-all duration-300">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('hidden');
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('mobileMenu');
+    const button = event.target.closest('button');
+    
+    if (!menu.contains(event.target) && !button?.onclick?.toString().includes('toggleMobileMenu')) {
+        menu.classList.add('hidden');
+    }
+});
+</script>

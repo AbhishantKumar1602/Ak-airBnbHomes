@@ -1,0 +1,150 @@
+<%- include('../partials/head', { pageTitle: 'Airbnb Home' }) %>
+</head>
+    
+<body class="bg-gradient-to-br from-gray-50 via-white to-slate-50 text-[#222] leading-relaxed min-h-screen">
+  <!-- Header -->
+  <%- include('../partials/headerNav') %>
+
+  <!-- Hero -->
+  <main class="text-center py-16 px-6 bg-gradient-to-br from-[#ff7a7a] via-[#ff385c] to-rose-600 text-white rounded-b-3xl shadow-2xl relative overflow-hidden">
+    <!-- Decorative elements using Tailwind -->
+    <div class="absolute inset-0"> 
+      <div class="absolute top-10 left-10 w-32 h-32 bg-white bg-opacity-10 rounded-full blur-2xl animate-pulse"></div>
+      <div class="absolute bottom-10 right-10 w-40 h-40 bg-white bg-opacity-5 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white bg-opacity-5 rounded-full blur-xl"></div>
+    </div>
+    
+    <div class="relative z-10">
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-2xl tracking-tight animate-fade-in">Welcome to Airbnb</h1>
+      <p class="text-xl md:text-2xl mb-10 opacity-95 max-w-3xl mx-auto font-light leading-relaxed">Find unique stays and experiences around the world</p>
+    </div>
+  </main>
+
+<!-- Homes Grid Section -->
+<section class="mt-20 px-6 md:px-12 max-w-7xl mx-auto">
+  <div class="text-center mb-16">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 tracking-tight">Available Homes</h2>
+    <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-6">Discover handpicked accommodations that offer comfort, style, and unforgettable experiences</p>
+    <div class="w-24 h-1 bg-gradient-to-r from-[#ff7a7a] to-[#ff385c] mx-auto rounded-full"></div>
+  </div>
+
+  <!-- Grid container -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+  <% (homesData || []).forEach(home => { %>
+      <div class="group bg-white rounded-3xl shadow-lg overflow-hidden 
+                  transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-rose-500 hover:shadow-opacity-10
+                  border border-gray-100 hover:border-rose-200 relative transform hover:-translate-y-2 hover:scale-105">
+
+        <!-- Cover Image (First photo) -->
+        <div class="relative overflow-hidden rounded-t-3xl">
+          <% if (home.photos && home.photos.length) { %>
+            <img src="/uploads/<%= Array.isArray(home.photos) ? home.photos[0] : home.photos %>" 
+                 alt="Home Cover" 
+                 class="w-full h-64 object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
+          <% } else { %>
+            <!-- fallback placeholder -->
+            <div class="w-full h-64 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 flex flex-col items-center justify-center text-gray-500 relative">
+              <svg class="w-16 h-16 mb-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <span class="text-sm font-medium">No Image</span>
+            </div>
+          <% } %>
+          
+          <!-- Floating rating badge -->
+          <div class="absolute top-4 right-4 bg-white bg-opacity-95 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg border border-white border-opacity-50">
+            <div class="flex items-center gap-1">
+              <span class="text-sm font-bold text-gray-800"><%= home.rating %></span>
+              <span class="text-yellow-500">⭐</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Content -->
+        <div class="p-6 space-y-4">
+          <h3 class="font-bold text-gray-900 text-xl mb-3 truncate group-hover:text-rose-600 transition-colors duration-300 leading-tight"><%= home.houseName %></h3>
+          
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-gray-600 bg-gray-50 p-3 rounded-xl">
+              <svg class="w-5 h-5 flex-shrink-0 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <p class="text-sm font-medium truncate"><%= home.homeLocation %></p>
+            </div>
+            
+            <div class="flex items-center gap-3 text-gray-500 bg-blue-50 p-3 rounded-xl">
+              <svg class="w-5 h-5 flex-shrink-0 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <p class="text-sm font-medium truncate"><%= home.contactInfo %></p>
+            </div>
+          </div>
+
+          <!-- Price highlight -->
+          <div class="bg-gradient-to-r from-emerald-50 via-green-50 to-emerald-50 p-5 rounded-2xl border-2 border-emerald-100 shadow-sm">
+            <div class="text-center">
+              <span class="text-3xl font-bold text-emerald-600 tracking-tight">₹<%= home.pricePerNight %></span>
+              <span class="text-emerald-600 text-base font-semibold ml-1">/ night</span>
+            </div>
+          </div>
+
+          <!-- Book Now Button -->
+          <div class="mt-6 text-center">
+            <a href="/homes/<%= home._id %>" class="
+              group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold shadow-lg 
+              transition-all duration-300 text-lg w-full
+              bg-gradient-to-r from-blue-600 to-blue-700 text-white 
+              hover:from-blue-700 hover:to-blue-800 hover:shadow-xl hover:shadow-blue-500 hover:shadow-opacity-25
+              transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50">
+              <span class="font-semibold">View Home</span>
+              <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Extra thumbnails if more than one photo -->
+          <% if (home.photos && Array.isArray(home.photos) && home.photos.length > 1) { %>
+            <div class="pt-4 border-t border-gray-100">
+              <p class="text-xs text-gray-500 mb-3 font-medium uppercase tracking-wider">More Photos</p>
+              <div class="flex gap-2 justify-center overflow-x-auto pb-2">
+                <% home.photos.slice(1, 5).forEach((photo, index) => { %>
+                  <div class="relative flex-shrink-0 group/thumb">
+                    <img src="/uploads/<%= photo %>"  
+                         alt="Home Thumbnail" 
+                         class="w-16 h-16 object-cover rounded-xl border-2 border-gray-200 
+                                transition-all duration-300 hover:border-rose-400 hover:scale-110 
+                                hover:shadow-lg cursor-pointer" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black from-opacity-0 to-transparent opacity-0 hover:opacity-20 rounded-xl transition-all duration-300"></div>
+                  </div>
+                <% }); %>
+                
+                <% if (home.photos.length > 5) { %>
+                  <div class="w-16 h-16 bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 rounded-xl border-2 border-gray-200 
+                             flex items-center justify-center text-gray-600 text-xs font-bold flex-shrink-0
+                             hover:from-rose-100 hover:to-rose-200 hover:border-rose-300 hover:text-rose-600
+                             transition-all duration-300 cursor-pointer hover:scale-110">
+                    +<%= home.photos.length - 4 %>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+</section>
+
+<!-- Footer -->
+<%- include('../partials/footer') %>
+
+<!-- Add this CSS (tailwind utility) -->
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+</body>
+</html>

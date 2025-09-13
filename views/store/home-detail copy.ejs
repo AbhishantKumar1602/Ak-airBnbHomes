@@ -1,0 +1,54 @@
+<%- include('../partials/head') %>
+</head>
+    
+<body class="bg-[#fafafa] text-[#222] leading-relaxed">
+  <!-- Header -->
+  <%- include('../partials/headerNav') %>
+  <h1 class="text-4xl font-extrabold mb-8 flex flex-col items-center justify-center text-[#f855d2] tracking-tight">
+    <span class="flex items-center gap-4">
+      Detail of <u> <%= home.houseName %></u>
+    </span>
+  </h1>
+  <main class="max-w-4xl mx-auto mt-16 bg-white rounded-3xl shadow-2xl p-10">
+    <div class="flex flex-col md:flex-row gap-10">
+      <!-- Home Images -->
+      <div class="md:w-1/2 flex flex-col items-center">
+        <% if (home.photos && home.photos.length) { %>
+          <img src="/uploads/<%= Array.isArray(home.photos) ? home.photos[0] : home.photos %>" alt="Home Cover" class="w-full h-72 object-cover rounded-2xl mb-4 shadow-lg" />
+          <% if (Array.isArray(home.photos) && home.photos.length > 1) { %>
+            <div class="flex gap-3 mt-2">
+              <% home.photos.slice(1).forEach(photo => { %>
+                <img src="/uploads/<%= photo %>" alt="Home Thumbnail" class="w-20 h-20 object-cover rounded-lg border shadow" />
+              <% }); %>
+            </div>
+          <% } %>
+        <% } else { %>
+          <div class="w-full h-72 bg-gray-200 flex items-center justify-center text-gray-500 rounded-2xl shadow-lg">No Image</div>
+        <% } %>
+      </div>
+      <!-- Home Details -->
+      <div class="md:w-1/2 flex flex-col justify-center gap-4">
+        <h1 class="text-4xl font-extrabold mb-2 text-[#ff385c] tracking-tight"><%= home.houseName %></h1>
+        <p class="text-xl text-gray-700 mb-2 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 12.414a2 2 0 00-2.828 0l-4.243 4.243A8 8 0 1117.657 16.657z" /></svg> <%= home.homeLocation %></p>
+        <p class="text-md text-gray-500 mb-2">Contact: <span class="font-semibold text-gray-800"><%= home.contactInfo %></span></p>
+        <p class="text-lg text-gray-700 mb-2">Price per night: <span class="font-bold text-green-600">₹<%= home.pricePerNight %></span></p>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-lg text-yellow-600 font-bold">Rating: <%= home.rating %></span>
+          <span class="text-yellow-400 text-xl">⭐</span>
+        </div>
+        <div class="flex items-center gap-4 mt-6">
+          <!-- add to favourite -->
+          <%- include('../partials/favourite') %>
+
+          <a href="#" class="inline-block bg-[#ff385c] text-white px-6 py-2 rounded-full font-bold shadow hover:bg-[#e11d48] transition">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 bg-white mt-16 border-t border-gray-300 sticky">
+    <p>© 2025 Airbnb Clone | Made with ❤️</p>
+  </footer>
+</body>
+</html>
