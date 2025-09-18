@@ -114,3 +114,13 @@ nodemon app.js
 ```
 
 The server will be running on `http://localhost:3001` (or the port you specified).
+
+"email":"ak1@gmail.com"
+"password":"Virus@123"
+"usertype":"host"
+
+
+
+"email":"lakki@gmail.com"
+"password":"Virus@123"
+"usertype":"guest"
