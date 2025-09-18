@@ -1,7 +1,7 @@
 const path = require('path');
 
 const express = require('express');
-const MONGO_URL = "mongodb+srv://root:1602@akmongo.sya0hez.mongodb.net/airbnb?retryWrites=true&w=majority&appName=AkMongo";
+const MONGO_URL = process.env.MONGO_URL || "mongodb+srv://root:1602@akmongo.sya0hez.mongodb.net/airbnb?retryWrites=true&w=majority&appName=AkMongo";
 const { default: Mongoose } = require('mongoose');
 const session = require('express-session')
 const MongoDbStore = require('connect-mongodb-session')(session);
@@ -50,7 +50,7 @@ app.use("/host", hostRouter);
 app.use(errorController.PageNotFound404);
 
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 Mongoose.connect(MONGO_URL).then(() => {
     console.log('Connected to Mongo database');
     app.listen(PORT, () => {
